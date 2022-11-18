@@ -1,0 +1,45 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    New Page
+{% endblock %}
+
+{% block head %}
+    <style>
+        label{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 1.2rem;
+        }
+        textarea{
+            height: 60vh;
+            resize: none;
+        }
+        #submit{
+            width: 80%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: end;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1>Create your own encyclopedia here!</h1>
+
+    <!-- form that takes title and markdown content from the user -->
+    <form action="{% url 'new_page' %}" method="post">
+        {% csrf_token %}
+        <!-- title -->
+        <div>{{ form.title }}</div>
+        <br>
+        <h6>Provide your markdown content here:</h6>
+
+        <div>{{ form.content }}<div>
+        
+        <!-- submit button -->
+        <div id="submit">
+            <input type="submit" value="Save"  class="btn-primary">
+        </div>
+    </form>
+ 
+{% endblock %}

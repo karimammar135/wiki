@@ -1,0 +1,34 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Edit {{ title }}
+{% endblock %}
+
+{% block head %}
+<style>
+    textarea{
+        height: 60vh;
+        resize: none;
+    }
+    #submit{
+        width: 80%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: end;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+    <form action="{% url 'edit' title %}" method="post">
+        {% csrf_token %}
+        <label for="edit"><h1>Edit your {{title}} page here!</h1></label>
+        <br>
+        <textarea id="edit" name="edit">{{ content }}</textarea> 
+        <div id="submit">
+            <input type="submit" value="save changes" class="btn-primary"> 
+        </div> 
+    </form>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+<!-- title -->
+{% block title %}
+    {% if entry_content == None %}
+        None
+    {% else %}
+        {{ title }}
+    {% endif %}
+{% endblock %}
+
+<!-- body -->
+{% block body %}
+    {% if entry_content == None %}
+        <h1>Error: This encyclopedia does not exist.</h1>
+    {% else %}
+        {{ entry_content|safe|escape }}
+        <a href="{% url 'edit' title %}">Edit page</a>
+    {% endif %}
+{% endblock %}
